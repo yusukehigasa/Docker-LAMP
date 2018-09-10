@@ -1,0 +1,32 @@
+version: "2"
+
+services:
+    db:
+        image: mysql:5.7
+        volumes:
+            - "./data/mysql:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: root # id and password: root / root
+        ports:
+            - "3306:3306"
+
+    redis:
+        image: redis:3.2.9
+        volumes:
+            - "./data/redis:/data"
+        ports:
+            - "6379:6379"
+        command: redis-server --appendonly yes --requirepass foobared # password: foobared
+
+    web:
+        build: .
+        ports:
+            - "80:80"
+        privileged: true
+        volumes:
+            - "./app/public/:/var/www/html"
+            - "./config/httpd.conf:/etc/httpd/conf/httpd.conf"
+            - "./config/php.ini:/etc/php.ini"
+        links:
+            - db
+            - redis
