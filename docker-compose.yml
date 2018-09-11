@@ -24,7 +24,7 @@ services:
             - "80:80"
         privileged: true
         volumes:
-            - "./app/public/:/var/www/html"
+            - "./myapp/:/var/www/html"
             - "./config/httpd.conf:/etc/httpd/conf/httpd.conf"
             - "./config/php.ini:/etc/php.ini"
         links:
