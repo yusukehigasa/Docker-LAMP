@@ -5,7 +5,9 @@ For begining of LAMP with Docker
 - Centos 6.10
 - PHP 7.2.9
 - Mysql 5.7
+  - Password: root
 - Redis 3.2.9
+  - Password: foobared
 - Development tools
   - git
   - composer
@@ -23,7 +25,7 @@ $ docker-compose build
 
 ### Run the docker containers
 ```
-$ docker-compose up
+$ docker-compose up [option -d]
 ```
 
 ### Watch the localhost
