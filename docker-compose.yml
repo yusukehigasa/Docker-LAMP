@@ -6,9 +6,10 @@ services:
         volumes:
             - "./data/mysql:/var/lib/mysql"
         environment:
-            MYSQL_ROOT_PASSWORD: root # id and password: root / root
+            MYSQL_ROOT_PASSWORD: root
         ports:
             - "3306:3306"
+        command: mysqld --default-time-zone="Asia/Tokyo" --explicit_defaults_for_timestamp=1 --log_error_verbosity=1
 
     redis:
         image: redis:3.2.9
@@ -16,7 +17,7 @@ services:
             - "./data/redis:/data"
         ports:
             - "6379:6379"
-        command: redis-server --appendonly yes --requirepass foobared # password: foobared
+        command: redis-server --appendonly yes --requirepass foobared
 
     web:
         build: .
